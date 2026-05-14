@@ -76,10 +76,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Faça seu check-in digital na Pousada Almorão de forma rápida e simples." },
       { name: "author", content: "Pousada Almorão" },
       { property: "og:title", content: "Check-in Digital — Pousada Almorão" },
-      { property: "og:description", content: "Faça seu check-in digital na Pousada Almorão." },
+      { property: "og:description", content: "Faça seu check-in digital na Pousada Almorão de forma rápida e simples." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Check-in Digital — Pousada Almorão" },
+      { name: "twitter:description", content: "Faça seu check-in digital na Pousada Almorão de forma rápida e simples." },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
