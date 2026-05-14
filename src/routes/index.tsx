@@ -6,8 +6,7 @@ export const Route = createFileRoute("/")({
   component: CheckinPage,
 });
 
-// Configurable webhook URL — replace with your endpoint
-const WEBHOOK_URL = "https://hook.us2.make.com/lezkfugvvv8k4ja54jxsmoh94casxduj";
+const WEBHOOK_URL = "/api/public/checkin";
 
 type Companion = { id: string; name: string; birthdate: string };
 
@@ -87,10 +86,15 @@ function CheckinPage() {
   const submit = async () => {
     if (!validateStep(3)) return;
     setSubmitting(true);
+    setErrors((current) => {
+      const next = { ...current };
+      delete next.submit;
+      return next;
+    });
+
     try {
-      await fetch(WEBHOOK_URL, {
+      const response = await fetch(WEBHOOK_URL, {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mainGuest: {
@@ -104,6 +108,11 @@ function CheckinPage() {
           submittedAt: new Date().toISOString(),
         }),
       });
+
+      if (!response.ok) {
+        throw new Error("Falha no envio");
+      }
+
       setSuccess(true);
     } catch {
       setErrors({ submit: "Erro ao enviar. Tente novamente." });
