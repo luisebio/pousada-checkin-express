@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 });
 
 // Configurable webhook URL — replace with your endpoint
-const WEBHOOK_URL = "https://luisebiofern.app.n8n.cloud/webhook-test/cadastro-clientes";
+const WEBHOOK_URL = "https://hook.us2.make.com/lezkfugvvv8k4ja54jxsmoh94casxduj";
 
 type Companion = { id: string; name: string; birthdate: string };
 
