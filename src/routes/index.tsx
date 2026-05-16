@@ -6,7 +6,7 @@ export const Route = createFileRoute("/")({
   component: CheckinPage,
 });
 
-const WEBHOOK_URL = "/api/public/checkin";
+const WEBHOOK_URL = "https://luisebiofern.app.n8n.cloud/webhook/Cadastro-clientes";
 
 type Companion = { id: string; name: string; birthdate: string };
 
@@ -93,8 +93,9 @@ function CheckinPage() {
     });
 
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      await fetch(WEBHOOK_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mainGuest: {
@@ -108,10 +109,6 @@ function CheckinPage() {
           submittedAt: new Date().toISOString(),
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Falha no envio");
-      }
 
       setSuccess(true);
     } catch {
